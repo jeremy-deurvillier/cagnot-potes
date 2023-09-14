@@ -14,8 +14,8 @@ class CampaignType extends AbstractType
         $builder
             ->add('title')
             ->add('content')
-            ->add('createdAt')
-            ->add('updatedAt')
+            //->add('createdAt')
+            //->add('updatedAt')
             ->add('goal')
             ->add('name')
         ;

@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Campaign;
 use App\Form\CampaignType;
 use App\Repository\CampaignRepository;
+use DateTimeImmutable;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -30,6 +31,9 @@ class CampaignController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $campaign->setCreatedAt(new DateTimeImmutable());
+            $campaign->setUpdatedAt(new DateTimeImmutable());
+            
             $entityManager->persist($campaign);
             $entityManager->flush();
 
