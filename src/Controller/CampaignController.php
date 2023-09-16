@@ -28,12 +28,13 @@ class CampaignController extends AbstractController
     {
         $campaign = new Campaign();
         $form = $this->createForm(CampaignType::class, $campaign);
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $campaign->setCreatedAt(new DateTimeImmutable());
             $campaign->setUpdatedAt(new DateTimeImmutable());
-            
+
             $entityManager->persist($campaign);
             $entityManager->flush();
 
@@ -41,7 +42,6 @@ class CampaignController extends AbstractController
         }
 
         return $this->render('campaign/new.html.twig', [
-            'campaign' => $campaign,
             'form' => $form,
         ]);
     }
@@ -75,7 +75,7 @@ class CampaignController extends AbstractController
     #[Route('/{id}', name: 'app_campaign_delete', methods: ['POST'])]
     public function delete(Request $request, Campaign $campaign, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$campaign->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $campaign->getId(), $request->request->get('_token'))) {
             $entityManager->remove($campaign);
             $entityManager->flush();
         }

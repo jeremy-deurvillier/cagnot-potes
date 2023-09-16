@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Campaign
+{% block title %}
+	Créer une campagne
 {% endblock %}
 
 {% block stylesheets %}
@@ -10,10 +11,10 @@
 
 {% block javascripts %}
 	<!--Javascript Markdown editor
-	<script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
-	<script>
-		var simplemde = new SimpleMDE({element: document.querySelector("textarea")});
-	</script> -->
+		<script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+		<script>
+			var simplemde = new SimpleMDE({element: document.querySelector("textarea")});
+		</script> -->
 {% endblock %}
 
 {% block body %}
@@ -99,5 +100,4 @@
 		</div>
 	</div>
 
-	<a href="{{ path('app_campaign_index') }}">back to list</a>
 {% endblock %}
