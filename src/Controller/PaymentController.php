@@ -3,8 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\Campaign;
-use App\Entity\Participant;
 use App\Entity\Payment;
+use App\Form\PaymentType;
 use DateTimeImmutable;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -17,30 +17,18 @@ class PaymentController extends AbstractController
     #[Route('/campaign/{id}/payment', name: 'app_campaign_payment')]
     public function payment(Request $request, Campaign $campaign, EntityManagerInterface $entityManager): Response
     {
-        $participant = new Participant();
         $payment = new Payment();
-        //$form = $this->createForm(PaymentType::class);
-        $form = $this->createFormBuilder()
-            ->add('name')
-            ->add('email')
-            ->add('amount')
-            ->getForm()
-        ;
+        $form = $this->createForm(PaymentType::class, $payment);
+        
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $participant->setName($form->getViewData()['name']);
-            $participant->setEmail($form->getViewData()['email']);
-            $participant->setCampaign($campaign);
+           $payment->getParticipant()->setCampaign($campaign);
             
-            $payment->setAmount($form->getViewData()['amount']);
             $payment->setCreatedAt(new DateTimeImmutable());
             $payment->setUpdatedAt(new DateTimeImmutable());
-            $payment->getParticipant($participant);
 
-            $participant->addPayment($payment);
-            // dd($participant);
-            $entityManager->persist($participant);
+            //dd($payment);
             $entityManager->persist($payment);
             $entityManager->flush();
 

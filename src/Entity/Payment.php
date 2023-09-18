@@ -22,7 +22,7 @@ class Payment
     #[ORM\Column]
     private ?\DateTimeImmutable $updatedAt = null;
 
-    #[ORM\ManyToOne(inversedBy: 'payments')]
+    #[ORM\ManyToOne(inversedBy: 'payments', cascade: ['persist'])]
     private ?Participant $participant = null;
 
     public function getId(): ?int

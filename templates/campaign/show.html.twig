@@ -26,8 +26,8 @@
 	<!-- Show progress -->
 	<section class="progress-section">
 		<div class="progress">
-			<div class="determinate" style="width: {{ (100 * sum) / campaign.goal|round(0, 'floor') }}%">
-				<span>{{ (100 * sum) / campaign.goal|round(0, 'floor') }}% de l'objectif</span>
+			<div class="determinate" style="width: {{ ((100 * sum) / campaign.goal)|round }}%">
+				<span>{{ ((100 * sum) / campaign.goal)|round }}% de l'objectif</span>
 			</div>
 		</div>
 	</section>
