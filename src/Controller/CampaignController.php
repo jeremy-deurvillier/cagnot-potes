@@ -38,7 +38,7 @@ class CampaignController extends AbstractController
             $entityManager->persist($campaign);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_campaign_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_campaign_show', ['id' => $campaign->getId()], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('campaign/new.html.twig', [
