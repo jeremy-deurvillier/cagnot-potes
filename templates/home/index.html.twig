@@ -126,7 +126,7 @@
 										{% for p in c.participants %}
 											{% set sum = sum + p.payments.0.amount %}
 										{% endfor %}
-										<div class="determinate" style="width: {{ (100 * sum) / c.goal|round(0, 'floor') }}%"></div>
+										<div class="determinate" style="width: {{ ((100 * sum) / c.goal)|round(0, 'ceil') }}%"></div>
 									</div>
 								</div>
 							</a>
