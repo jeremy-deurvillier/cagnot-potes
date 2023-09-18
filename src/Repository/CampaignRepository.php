@@ -3,7 +3,11 @@
 namespace App\Repository;
 
 use App\Entity\Campaign;
+use App\Entity\Participant;
+use App\Entity\Payment;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query\Expr;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -19,6 +23,19 @@ class CampaignRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Campaign::class);
+    }
+
+    /**
+     * @return Campaign[] Returns an array of Campaign objects
+     */
+   public function findFiveOrderByMaxParticipant(): array
+    {
+        return $this->createQueryBuilder('c')
+            ->orderBy('c.updatedAt', 'DESC')
+            ->setMaxResults(5)
+            ->getQuery()
+            ->getResult()
+        ;
     }
 
 //    /**

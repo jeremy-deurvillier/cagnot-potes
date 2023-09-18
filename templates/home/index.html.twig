@@ -4,7 +4,7 @@
 {% endblock %}
 
 {% block body %}
-
+	{% set sum = 0 %}
 	<div class="parallax-container hero-banner valign-wrapper">
 		<div class="section no-pad-bot">
 			<div class="container">
@@ -117,19 +117,15 @@
 											</div>
 											<div class="col s6">
 												<i class="material-icons teal-text">euro_symbol</i>
-												<b>
-													{% set sum = 0 %}
-													{% for p in c.participants %}
-														{% set sum = sum + p.payments.0.amount %}
-													{% endfor %}
-
-													{{ sum }}
-												</b>
+												<b>{{ c.goal }}</b>
 											</div>
 										</div>
 
 									</div>
 									<div class="progress">
+										{% for p in c.participants %}
+											{% set sum = sum + p.payments.0.amount %}
+										{% endfor %}
 										<div class="determinate" style="width: {{ (100 * sum) / c.goal|round(0, 'floor') }}%"></div>
 									</div>
 								</div>

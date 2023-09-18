@@ -19,12 +19,13 @@ class PaymentController extends AbstractController
     {
         $payment = new Payment();
         $form = $this->createForm(PaymentType::class, $payment);
-        
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-           $payment->getParticipant()->setCampaign($campaign);
-            
+            $campaign->setUpdatedAt(new DateTimeImmutable());
+
+            $payment->getParticipant()->setCampaign($campaign);
             $payment->setCreatedAt(new DateTimeImmutable());
             $payment->setUpdatedAt(new DateTimeImmutable());
 
