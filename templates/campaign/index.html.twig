@@ -3,16 +3,13 @@
 {% block title %}Campaign index{% endblock %}
 
 {% block body %}
-    <h1>Campaign index</h1>
+    <h1>Toutes les campagnes</h1>
 
-    <table class="table">
+    <table class="highlight responsive-table">
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Title</th>
                 <th>Content</th>
-                <th>CreatedAt</th>
-                <th>UpdatedAt</th>
                 <th>Goal</th>
                 <th>Name</th>
                 <th>actions</th>
@@ -21,16 +18,12 @@
         <tbody>
         {% for campaign in campaigns %}
             <tr>
-                <td>{{ campaign.id }}</td>
                 <td>{{ campaign.title }}</td>
                 <td>{{ campaign.content }}</td>
-                <td>{{ campaign.createdAt ? campaign.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ campaign.updatedAt ? campaign.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ campaign.goal }}</td>
                 <td>{{ campaign.name }}</td>
                 <td>
-                    <a href="{{ path('app_campaign_show', {'id': campaign.id}) }}">show</a>
-                    <a href="{{ path('app_campaign_edit', {'id': campaign.id}) }}">edit</a>
+                    <a href="{{ path('app_campaign_show', {'id': campaign.id}) }}" class="btn waves-effect waves-light">show</a>
                 </td>
             </tr>
         {% else %}
@@ -40,6 +33,4 @@
         {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('app_campaign_new') }}">Create new</a>
 {% endblock %}

@@ -27,6 +27,12 @@ class Participant
     #[ORM\OneToMany(mappedBy: 'participant', targetEntity: Payment::class)]
     private Collection $payments;
 
+    #[ORM\Column]
+    private ?bool $identityIsHide = null;
+
+    #[ORM\Column]
+    private ?bool $amountIsHide = null;
+
     public function __construct()
     {
         $this->payments = new ArrayCollection();
@@ -99,6 +105,30 @@ class Participant
                 $payment->setParticipant(null);
             }
         }
+
+        return $this;
+    }
+
+    public function isIdentityIsHide(): ?bool
+    {
+        return $this->identityIsHide;
+    }
+
+    public function setIdentityIsHide(bool $identityIsHide): static
+    {
+        $this->identityIsHide = $identityIsHide;
+
+        return $this;
+    }
+
+    public function isAmountIsHide(): ?bool
+    {
+        return $this->amountIsHide;
+    }
+
+    public function setAmountIsHide(bool $amountIsHide): static
+    {
+        $this->amountIsHide = $amountIsHide;
 
         return $this;
     }

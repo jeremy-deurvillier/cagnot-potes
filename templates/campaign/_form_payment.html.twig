@@ -4,13 +4,13 @@
 	{{ form_row(form.amount) }}
 	<p>
 		<label>
-			<input type="checkbox"/>
+			{{ form_widget(form.participant.identityIsHide) }}
 			<span>Masquer mon identité auprès des autres participants</span>
 		</label>
 	</p>
 	<p>
 		<label>
-			<input type="checkbox"/>
+			{{ form_widget(form.participant.amountIsHide) }}
 			<span>Masquer le montant de ma participation auprès des autres participants</span>
 		</label>
 	</p>

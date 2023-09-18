@@ -21,7 +21,8 @@ class PaymentType extends AbstractType
                 ],
                 'attr' => [
                     'id' => 'mount',
-                    'class' => 'validate'
+                    'class' => 'validate',
+                    'min' => 1
                 ]
             ])
             //->add('createdAt')

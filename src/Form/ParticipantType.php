@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Participant;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -32,6 +33,20 @@ class ParticipantType extends AbstractType
                 'attr' => [
                     'id' => 'email',
                     'class' => 'validate'
+                ]
+            ])
+            ->add('identityIsHide', CheckboxType::class, [
+                'label' => 'Masquer mon identité auprès des autres participants',
+                'required' => false,
+                'attr' => [
+                    'id' => 'identityIsHide'
+                ]
+            ])
+            ->add('amountIsHide', CheckboxType::class, [
+                'label' => 'Masquer le montant de ma participation auprès des autres participants',
+                'required' => false,
+                'attr' => [
+                    'id' => 'amountIsHide'
                 ]
             ])
             //->add('campaign')

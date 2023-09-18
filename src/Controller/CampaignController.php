@@ -54,7 +54,7 @@ class CampaignController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_campaign_edit', methods: ['GET', 'POST'])]
+    //#[Route('/{id}/edit', name: 'app_campaign_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Campaign $campaign, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(CampaignType::class, $campaign);
@@ -72,7 +72,7 @@ class CampaignController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_campaign_delete', methods: ['POST'])]
+    //#[Route('/{id}', name: 'app_campaign_delete', methods: ['POST'])]
     public function delete(Request $request, Campaign $campaign, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete' . $campaign->getId(), $request->request->get('_token'))) {

@@ -33,7 +33,7 @@ class PaymentController extends AbstractController
             $entityManager->persist($payment);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_campaign_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_campaign_show', ['id' => $campaign->getId()], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('campaign/payment.html.twig', [
